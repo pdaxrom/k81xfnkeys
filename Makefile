@@ -8,8 +8,8 @@ ifeq (Linux,$(SYSTEM))
 CFLAGS  = -Wall $(shell pkg-config hidapi-hidraw --cflags)
 LIBS    = $(shell pkg-config hidapi-hidraw --libs)
 else
-CFLAGS  = -I/usr/local/include/hidapi -Wall
-LIBS    = -lhidapi
+CFLAGS  = $(shell pkg-config hidapi --cflags) -Wall
+LIBS    = $(shell pkg-config hidapi --libs)
 endif
 
 OBJS = k81xfnkeys.o
